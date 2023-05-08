@@ -1,4 +1,4 @@
-FROM node:__src_tag_name__
+FROM __src_tag_name__
 
 # Installing the dependencies
 
