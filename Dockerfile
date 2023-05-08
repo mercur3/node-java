@@ -4,6 +4,6 @@ FROM __src_tag_name__
 
 RUN set -eux; \
     apt update -y; \
-    apt install openjdk-__java_version__-jdk; \
+    apt install -y openjdk-__java_version__-jdk; \
     rm -rf /var/log /tmp;
 
