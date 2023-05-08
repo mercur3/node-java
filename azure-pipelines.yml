@@ -15,36 +15,6 @@ pool:
   vmImage: ubuntu-latest
 jobs:
   - job:
-    displayName: Building image on Debian buster, Java 11, Node 16
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:16-buster/g" -i Dockerfile
-          sed "s/__java_version__/11/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node16-java11-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node16-java11-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node16-java11-buster
-        displayName: docker push mercur3/node-java:node16-java11-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
     displayName: Building image on Debian bullseye, Java 11, Node 16
     pool:
       vmImage: ubuntu-latest
@@ -69,36 +39,6 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
           docker push mercur3/node-java:node16-java11-bullseye
         displayName: docker push mercur3/node-java:node16-java11-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 11, Node 18
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:18-buster/g" -i Dockerfile
-          sed "s/__java_version__/11/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node18-java11-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node18-java11-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node18-java11-buster
-        displayName: docker push mercur3/node-java:node18-java11-buster
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
         env:
           DOCKER_PASSWORD: $(DOCKER_PASSWORD)
@@ -135,36 +75,6 @@ jobs:
 
 
   - job:
-    displayName: Building image on Debian buster, Java 11, Node 19
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:19-buster/g" -i Dockerfile
-          sed "s/__java_version__/11/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node19-java11-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node19-java11-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node19-java11-buster
-        displayName: docker push mercur3/node-java:node19-java11-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
     displayName: Building image on Debian bullseye, Java 11, Node 19
     pool:
       vmImage: ubuntu-latest
@@ -189,36 +99,6 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
           docker push mercur3/node-java:node19-java11-bullseye
         displayName: docker push mercur3/node-java:node19-java11-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 11, Node 20
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:20-buster/g" -i Dockerfile
-          sed "s/__java_version__/11/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node20-java11-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node20-java11-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node20-java11-buster
-        displayName: docker push mercur3/node-java:node20-java11-buster
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
         env:
           DOCKER_PASSWORD: $(DOCKER_PASSWORD)
@@ -255,36 +135,6 @@ jobs:
 
 
   - job:
-    displayName: Building image on Debian buster, Java 17, Node 16
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:16-buster/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node16-java17-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node16-java17-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node16-java17-buster
-        displayName: docker push mercur3/node-java:node16-java17-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
     displayName: Building image on Debian bullseye, Java 17, Node 16
     pool:
       vmImage: ubuntu-latest
@@ -309,36 +159,6 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
           docker push mercur3/node-java:node16-java17-bullseye
         displayName: docker push mercur3/node-java:node16-java17-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 17, Node 18
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:18-buster/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node18-java17-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node18-java17-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node18-java17-buster
-        displayName: docker push mercur3/node-java:node18-java17-buster
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
         env:
           DOCKER_PASSWORD: $(DOCKER_PASSWORD)
@@ -375,36 +195,6 @@ jobs:
 
 
   - job:
-    displayName: Building image on Debian buster, Java 17, Node 19
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:19-buster/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node19-java17-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node19-java17-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node19-java17-buster
-        displayName: docker push mercur3/node-java:node19-java17-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
     displayName: Building image on Debian bullseye, Java 17, Node 19
     pool:
       vmImage: ubuntu-latest
@@ -435,36 +225,6 @@ jobs:
 
 
   - job:
-    displayName: Building image on Debian buster, Java 17, Node 20
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:20-buster/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node20-java17-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node20-java17-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node20-java17-buster
-        displayName: docker push mercur3/node-java:node20-java17-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
     displayName: Building image on Debian bullseye, Java 17, Node 20
     pool:
       vmImage: ubuntu-latest
@@ -489,246 +249,6 @@ jobs:
           echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
           docker push mercur3/node-java:node20-java17-bullseye
         displayName: docker push mercur3/node-java:node20-java17-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 20, Node 16
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:16-buster/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node16-java20-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node16-java20-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node16-java20-buster
-        displayName: docker push mercur3/node-java:node16-java20-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian bullseye, Java 20, Node 16
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:16-bullseye/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node16-java20-bullseye .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node16-java20-bullseye .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node16-java20-bullseye
-        displayName: docker push mercur3/node-java:node16-java20-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 20, Node 18
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:18-buster/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node18-java20-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node18-java20-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node18-java20-buster
-        displayName: docker push mercur3/node-java:node18-java20-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian bullseye, Java 20, Node 18
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:18-bullseye/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node18-java20-bullseye .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node18-java20-bullseye .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node18-java20-bullseye
-        displayName: docker push mercur3/node-java:node18-java20-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 20, Node 19
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:19-buster/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node19-java20-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node19-java20-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node19-java20-buster
-        displayName: docker push mercur3/node-java:node19-java20-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian bullseye, Java 20, Node 19
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:19-bullseye/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node19-java20-bullseye .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node19-java20-bullseye .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node19-java20-bullseye
-        displayName: docker push mercur3/node-java:node19-java20-bullseye
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian buster, Java 20, Node 20
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:20-buster/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node20-java20-buster .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node20-java20-buster .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node20-java20-buster
-        displayName: docker push mercur3/node-java:node20-java20-buster
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian bullseye, Java 20, Node 20
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:20-bullseye/g" -i Dockerfile
-          sed "s/__java_version__/20/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node20-java20-bullseye .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node20-java20-bullseye .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node20-java20-bullseye
-        displayName: docker push mercur3/node-java:node20-java20-bullseye
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
         env:
           DOCKER_PASSWORD: $(DOCKER_PASSWORD)

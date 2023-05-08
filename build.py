@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-SUPPORTED_JAVA_VERSIONS: list[int] = [11, 17, 20]
+SUPPORTED_JAVA_VERSIONS: list[int] = [11, 17]
 SUPPORTED_NODE_VERSIONS: list[int] = [16, 18, 19, 20]
-SUPPORTED_DEBIAN_VERSIONS: list[str] = ["buster", "bullseye"]
+SUPPORTED_DEBIAN_VERSIONS: list[str] = ["bullseye"]
 
 def main() -> None:
     output = """
