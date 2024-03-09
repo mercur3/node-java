@@ -4,15 +4,13 @@ openapi-generator to build interfaces for frontend apps.
 
 ** Support
 *** Java
-- 11
 - 17
 
 *** Node
-- 16
 - 18
-- 19
 - 20
+- 21
 
 *** Debian
-- Bullseye
+- Bookworm
 
