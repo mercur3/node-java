@@ -38,6 +38,7 @@ jobs:
           echo "------------------------------------------------------\n"
           echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
           docker push mercur3/node-java:fedora41-java21
+          rm -rf ~/.docker
         displayName: docker push mercur3/node-java:fedora41-java21
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
         env:
