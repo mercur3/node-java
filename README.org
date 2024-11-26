@@ -4,13 +4,11 @@ openapi-generator to build interfaces for frontend apps.
 
 ** Support
 *** Java
-- 17
-
-*** Node
-- 18
-- 20
 - 21
 
-*** Debian
-- Bookworm
+*** Node
+- Whatever the default version of =nodejs= it is in Fedora
+
+*** Fedora
+- 41
 

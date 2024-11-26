@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-SUPPORTED_JAVA_VERSIONS: list[int] = [17]
-SUPPORTED_NODE_VERSIONS: list[int] = [18, 20, 21]
-SUPPORTED_DEBIAN_VERSIONS: list[str] = ["bookworm"]
+SUPPORTED_JAVA_VERSIONS: list[int] = [21]
+#SUPPORTED_NODE_VERSIONS: list[int] = [18, 20, 21]
+SUPPORTED_FEDORA_VERSIONS: list[str] = [41]
 
 def main() -> None:
     output = """
@@ -23,13 +23,13 @@ pool:
 jobs:"""
 
     for j in SUPPORTED_JAVA_VERSIONS:
-        for n in SUPPORTED_NODE_VERSIONS:
-            for d in SUPPORTED_DEBIAN_VERSIONS:
-                tag_name = f"node-java:node{n}-java{j}-{d}"
-                src_tag_name = f"node:{n}-{d}"
+        for n in SUPPORTED_FEDORA_VERSIONS:
+            #for d in SUPPORTED_DEBIAN_VERSIONS:
+                tag_name = f"node-java:fedora{n}-java{j}"
+                src_tag_name = f"fedora:{n}"
                 output += f"""
   - job:
-    displayName: Building image on Debian {d}, Java {j}, Node {n}
+    displayName: Building image on Fedora {n}, Java {j}
     pool:
       vmImage: ubuntu-latest
     steps:

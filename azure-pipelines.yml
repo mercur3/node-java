@@ -15,7 +15,7 @@ pool:
   vmImage: ubuntu-latest
 jobs:
   - job:
-    displayName: Building image on Debian bookworm, Java 17, Node 18
+    displayName: Building image on Fedora 41, Java 21
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -23,82 +23,22 @@ jobs:
           echo "Building the images"
           printf "Using %d threads\n" $(nproc)
           echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:18-bookworm/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
+          sed "s/__src_tag_name__/fedora:41/g" -i Dockerfile
+          sed "s/__java_version__/21/g" -i Dockerfile
           cat Dockerfile
         displayName: Adding the version
 
       - script: |
           set -e
-          docker build -f Dockerfile -t mercur3/node-java:node18-java17-bookworm .
+          docker build -f Dockerfile -t mercur3/node-java:fedora41-java21 .
           echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node18-java17-bookworm .
+        displayName: docker build -f Dockerfile -t mercur3/node-java:fedora41-java21 .
 
       - script: |
           echo "------------------------------------------------------\n"
           echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node18-java17-bookworm
-        displayName: docker push mercur3/node-java:node18-java17-bookworm
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian bookworm, Java 17, Node 20
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:20-bookworm/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node20-java17-bookworm .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node20-java17-bookworm .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node20-java17-bookworm
-        displayName: docker push mercur3/node-java:node20-java17-bookworm
-        condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
-
-
-  - job:
-    displayName: Building image on Debian bookworm, Java 17, Node 21
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-      - script: |
-          echo "Building the images"
-          printf "Using %d threads\n" $(nproc)
-          echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/node:21-bookworm/g" -i Dockerfile
-          sed "s/__java_version__/17/g" -i Dockerfile
-          cat Dockerfile
-        displayName: Adding the version
-
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:node21-java17-bookworm .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:node21-java17-bookworm .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:node21-java17-bookworm
-        displayName: docker push mercur3/node-java:node21-java17-bookworm
+          docker push mercur3/node-java:fedora41-java21
+        displayName: docker push mercur3/node-java:fedora41-java21
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
         env:
           DOCKER_PASSWORD: $(DOCKER_PASSWORD)

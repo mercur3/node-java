@@ -3,8 +3,7 @@ FROM __src_tag_name__
 # Installing the dependencies
 
 RUN set -eux && \
-    apt update -y && \
-    apt install -y ca-certificates-java && \
-    apt install -y openjdk-__java_version__-jdk:amd64 && \
+    dnf update -y && \
+    dnf install -y java-__java_version__-openjdk.x86_64 && \
     rm -rf /var/log /tmp;
 
