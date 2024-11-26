@@ -6,8 +6,8 @@ openapi-generator to build interfaces for frontend apps.
 *** Java
 - 21
 
-*** Node
-- Whatever the default version of =nodejs= it is in Fedora
+*** Node and Maven
+- Whatever the default version it is in Fedora
 
 *** Fedora
 - 41
