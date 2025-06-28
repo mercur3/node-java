@@ -42,20 +42,17 @@ jobs:"""
           cat Dockerfile
         displayName: Adding the version
 
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/{tag_name} .
-          echo "------------------------------------------------------\\n"
-        displayName: docker build -f Dockerfile -t mercur3/{tag_name} .
-
-      - script: |
-          echo "------------------------------------------------------\\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/{tag_name}
-        displayName: docker push mercur3/{tag_name}
+      - task: Docker@2
+        displayName: Build & Push Node‐Java Image
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+        inputs:
+          command: buildAndPush
+          containerRegistry: docker-hub-login
+          repository: mercur3/node-java
+          Dockerfile: Dockerfile
+          tags: |
+            fedora{n}-java{j}
+            latest
 
 """
     with open("azure-pipelines.yml", "w") as fd:

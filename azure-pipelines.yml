@@ -28,20 +28,16 @@ jobs:
           cat Dockerfile
         displayName: Adding the version
 
-      - script: |
-          set -e
-          docker build -f Dockerfile -t mercur3/node-java:fedora41-java21 .
-          echo "------------------------------------------------------\n"
-        displayName: docker build -f Dockerfile -t mercur3/node-java:fedora41-java21 .
-
-      - script: |
-          echo "------------------------------------------------------\n"
-          echo "$DOCKER_PASSWORD" | docker login -u mercur3 --password-stdin
-          docker push mercur3/node-java:fedora41-java21
-          rm -rf ~/.docker
-        displayName: docker push mercur3/node-java:fedora41-java21
+      - task: Docker@2
+        displayName: Build & Push Node‐Java Image
         condition: not(eq(variables['Build.Reason'], 'PullRequest'))
-        env:
-          DOCKER_PASSWORD: $(DOCKER_PASSWORD)
+        inputs:
+          command: buildAndPush
+          containerRegistry: docker-hub-login
+          repository: mercur3/node-java
+          Dockerfile: Dockerfile
+          tags: |
+            fedora41-java21
+            latest
 
 
