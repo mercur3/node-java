@@ -15,7 +15,7 @@ pool:
   vmImage: ubuntu-latest
 jobs:
   - job:
-    displayName: Building image on Fedora 41, Java 21
+    displayName: Building image on Fedora 43, Java 25
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -23,8 +23,8 @@ jobs:
           echo "Building the images"
           printf "Using %d threads\n" $(nproc)
           echo "------------------------------------------------------\n"
-          sed "s/__src_tag_name__/fedora:41/g" -i Dockerfile
-          sed "s/__java_version__/21/g" -i Dockerfile
+          sed "s/__src_tag_name__/fedora:43/g" -i Dockerfile
+          sed "s/__java_version__/25/g" -i Dockerfile
           cat Dockerfile
         displayName: Adding the version
 
@@ -37,7 +37,7 @@ jobs:
           repository: mercur3/node-java
           Dockerfile: Dockerfile
           tags: |
-            fedora41-java21
+            fedora43-java25
             latest
 
 

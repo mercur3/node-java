@@ -4,11 +4,11 @@ openapi-generator to build interfaces for frontend apps.
 
 ** Support
 *** Java
-- 21
+- 25
 
 *** Node and Maven
 - Whatever the default version it is in Fedora
 
 *** Fedora
-- 41
+- 43
 
