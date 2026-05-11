@@ -10,5 +10,5 @@ openapi-generator to build interfaces for frontend apps.
 - Whatever the default version it is in Fedora
 
 *** Fedora
-- 43
+- 44
 

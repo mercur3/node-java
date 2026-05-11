@@ -2,7 +2,7 @@
 
 SUPPORTED_JAVA_VERSIONS: list[int] = [25]
 #SUPPORTED_NODE_VERSIONS: list[int] = [18, 20, 21]
-SUPPORTED_FEDORA_VERSIONS: list[str] = [43]
+SUPPORTED_FEDORA_VERSIONS: list[str] = [44]
 
 def main() -> None:
     output = """
